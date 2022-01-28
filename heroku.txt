@@ -1,0 +1,43 @@
+HEROKU  MERN  DEPLOYMENT:-
+Step 1:-
+Insert client folder in server folder.
+
+Step2:-
+Set PORT as process.env.PORT||5000 in app.js(backend)
+
+Step3:-
+Go inside server ,then client(cd server,cd client) and type npm run bulid
+
+Step4:-
+delete. git file from client
+
+Step5:- 
+In backend app.js  add below codes :-
+if(process.env.NODE_ENV =="production"){
+    app.use(express.static("client/build"));
+}
+&&
+Also delete the  app.get(/) line ,because in heroku it will act as main page ,then only our react “/” router will work.
+
+Step6:-
+Delete proxy from react  package.json (“proxy”:localhost://5000)
+
+Step 7:-
+In  backend  package.json add below commands-
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node src/app.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix      client && npm run build --prefix client"
+  },
+
+Step 8:-
+a)	Go to cd server, write  heroku login (in terminal)
+b)	create heroku app in heroku website(give app name …..)
+c)	then in terminal – use commands 
+d)	$ git add .
+e)	$ git commit -am "make it better"
+f)	$ git push heroku master:main
+
+******************************************************************************
+
+
